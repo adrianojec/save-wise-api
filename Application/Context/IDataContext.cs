@@ -5,9 +5,8 @@ namespace Application.Context
 {
     public interface IDataContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Save> Savings { get; set; }
-        public DbSet<Amount> Amounts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

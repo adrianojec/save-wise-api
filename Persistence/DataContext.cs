@@ -1,17 +1,16 @@
+using Application.Context;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
-    public class DataContext : DbContext
+    public class DataContext : DbContext, IDataContext
     {
         public DataContext(DbContextOptions options) : base(options)
         {
-
         }
 
-        public DbSet<User> Users { get; set; } = default!;
-        public DbSet<Save> Savings { get; set; } = default!;
-        public DbSet<Amount> Amounts { get; set; } = default!;
+        public DbSet<Account> Accounts { get; set; } = default!;
+        public DbSet<Transaction> Transactions { get; set; } = default!;
     }
 }

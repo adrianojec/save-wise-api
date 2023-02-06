@@ -659,7 +659,7 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "Domain": "1.0.0",
-          "Persistence": "1.0.0"
+          "Microsoft.EntityFrameworkCore": "7.0.2"
         },
         "compile": {
           "bin/placeholder/Application.dll": {}
@@ -682,6 +682,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "Application": "1.0.0",
           "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.2"
         },
@@ -1758,6 +1759,7 @@
       "Application >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 7.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.2",
+      "Persistence >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -1789,6 +1791,9 @@
           "projectReferences": {
             "/Users/jecadriano/C#/SaveWise/Application/Application.csproj": {
               "projectPath": "/Users/jecadriano/C#/SaveWise/Application/Application.csproj"
+            },
+            "/Users/jecadriano/C#/SaveWise/Persistence/Persistence.csproj": {
+              "projectPath": "/Users/jecadriano/C#/SaveWise/Persistence/Persistence.csproj"
             }
           }
         }

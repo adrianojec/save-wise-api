@@ -29,6 +29,9 @@
             "projectReferences": {
               "/Users/jecadriano/C#/SaveWise/Application/Application.csproj": {
                 "projectPath": "/Users/jecadriano/C#/SaveWise/Application/Application.csproj"
+              },
+              "/Users/jecadriano/C#/SaveWise/Persistence/Persistence.csproj": {
+                "projectPath": "/Users/jecadriano/C#/SaveWise/Persistence/Persistence.csproj"
               }
             }
           }
@@ -106,9 +109,6 @@
             "projectReferences": {
               "/Users/jecadriano/C#/SaveWise/Domain/Domain.csproj": {
                 "projectPath": "/Users/jecadriano/C#/SaveWise/Domain/Domain.csproj"
-              },
-              "/Users/jecadriano/C#/SaveWise/Persistence/Persistence.csproj": {
-                "projectPath": "/Users/jecadriano/C#/SaveWise/Persistence/Persistence.csproj"
               }
             }
           }
@@ -122,6 +122,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -219,6 +225,9 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "/Users/jecadriano/C#/SaveWise/Application/Application.csproj": {
+                "projectPath": "/Users/jecadriano/C#/SaveWise/Application/Application.csproj"
+              },
               "/Users/jecadriano/C#/SaveWise/Domain/Domain.csproj": {
                 "projectPath": "/Users/jecadriano/C#/SaveWise/Domain/Domain.csproj"
               }

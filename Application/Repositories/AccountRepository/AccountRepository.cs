@@ -15,7 +15,6 @@ namespace Application.AccountRepository
         public void Add(Account item)
         {
             _context.Accounts.Add(item);
-            _context.SaveChangesAsync();
         }
 
         public async Task SaveChangesAsync()

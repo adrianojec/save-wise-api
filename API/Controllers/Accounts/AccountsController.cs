@@ -1,5 +1,5 @@
+using API.Controllers.Accounts.ViewModels;
 using API.Controllers.InputModels;
-using Application.Commands.Accounts.Dtos;
 using Application.Commands.Accounts.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +11,15 @@ namespace API.Controllers.Accounts
     public class AccountsController : ControllerBase
     {
         private readonly ICreateAccountCommand _createAccountCommand;
-        public AccountsController(ICreateAccountCommand createAccountCommand)
+        private readonly IGetAccountsCommand _getAccountsCommand;
+        public AccountsController
+        (
+            ICreateAccountCommand createAccountCommand,
+            IGetAccountsCommand getAccountsCommand
+        )
         {
+            _getAccountsCommand = getAccountsCommand;
             _createAccountCommand = createAccountCommand;
-
         }
 
         [HttpPost]
@@ -22,6 +27,13 @@ namespace API.Controllers.Accounts
         {
             await _createAccountCommand.ExecuteCommand(input.ToDto());
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<List<AccountViewModel>> GetAll()
+        {
+            var accounts = await _getAccountsCommand.ExecuteCommand();
+            return accounts.Select(account => new AccountViewModel(account)).ToList();
         }
     }
 }

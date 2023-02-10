@@ -29,6 +29,7 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 // Dependency Injection - Commands
 builder.Services.AddScoped<ICreateAccountCommand, CreateAccountCommand>();
+builder.Services.AddScoped<IGetAccountsCommand, GetAccountsCommand>();
 
 var app = builder.Build();
 

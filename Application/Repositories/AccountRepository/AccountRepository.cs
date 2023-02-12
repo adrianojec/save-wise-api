@@ -27,10 +27,20 @@ namespace Application.AccountRepository
         {
             var account = await _context.Accounts.FirstOrDefaultAsync(account => account.Id == id);
 
-            if (account == null) throw new NotImplementedException();
+            if (account == null) throw new NullReferenceException();
 
             return account;
         }
+
+        public async Task Update(Account item)
+        {
+            var account = await GetById(item.Id);
+
+            if (account == null) throw new NullReferenceException();
+
+            account.Title = item.Title;
+        }
+
 
         public async Task SaveChangesAsync()
         {

@@ -31,6 +31,7 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ICreateAccountCommand, CreateAccountCommand>();
 builder.Services.AddScoped<IGetAccountsCommand, GetAccountsCommand>();
 builder.Services.AddScoped<IGetAccountCommand, GetAccountCommand>();
+builder.Services.AddScoped<IUpdateAccountCommand, UpdateAccountCommand>();
 
 var app = builder.Build();
 

@@ -23,6 +23,15 @@ namespace Application.AccountRepository
             return await _context.Accounts.ToListAsync();
         }
 
+        public async Task<Account> GetById(Guid id)
+        {
+            var account = await _context.Accounts.FirstOrDefaultAsync(account => account.Id == id);
+
+            if (account == null) throw new NotImplementedException();
+
+            return account;
+        }
+
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();

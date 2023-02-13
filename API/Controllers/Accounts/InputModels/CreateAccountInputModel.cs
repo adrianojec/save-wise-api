@@ -6,7 +6,7 @@ namespace API.Controllers.InputModels
     {
         public string Title { get; set; } = string.Empty;
 
-        public CreateAccountDto ToDto()
+        public CreateAccountDto ToCreateAccountDto()
         {
             var account = new CreateAccountDto
             {

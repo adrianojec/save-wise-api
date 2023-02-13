@@ -14,15 +14,7 @@ namespace Application.Commands.Accounts
         }
         public async Task ExecuteCommand(CreateAccountDto input)
         {
-            var account = new Account
-            {
-                Id = Guid.NewGuid(),
-                Title = input.Title,
-                Total = 0.0,
-                DateCreated = DateTime.Now,
-            };
-
-            _accountRepository.Add(account);
+            _accountRepository.Add(input.ToAccountEntity());
 
             await _accountRepository.SaveChangesAsync();
         }

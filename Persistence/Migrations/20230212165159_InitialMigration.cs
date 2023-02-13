@@ -17,7 +17,6 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
-                    Total = table.Column<double>(type: "REAL", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -31,6 +30,7 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     AccountId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    TransactionType = table.Column<int>(type: "INTEGER", nullable: false),
                     Amount = table.Column<double>(type: "REAL", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },

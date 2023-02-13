@@ -6,7 +6,7 @@ namespace API.Controllers.Accounts.InputModels
     {
         public string Title { get; set; } = string.Empty;
 
-        public UpdateAccountDto ToDto()
+        public UpdateAccountDto ToUpdateAccountDto()
         {
             var account = new UpdateAccountDto
             {

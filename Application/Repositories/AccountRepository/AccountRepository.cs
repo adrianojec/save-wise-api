@@ -40,17 +40,14 @@ namespace Application.AccountRepository
 
             account.Title = item.Title;
         }
-
-
-        public async Task SaveChangesAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
-
         public async Task Delete(Guid id)
         {
             var account = await GetById(id);
             _context.Accounts.Remove(account);
+        }
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

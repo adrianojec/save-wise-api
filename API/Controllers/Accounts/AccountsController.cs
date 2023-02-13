@@ -33,9 +33,9 @@ namespace API.Controllers.Accounts
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateAccount([FromBody] CreateAccountInputModel input)
+        public async Task<ActionResult> Create([FromBody] CreateAccountInputModel input)
         {
-            await _createAccountCommand.ExecuteCommand(input.ToDto());
+            await _createAccountCommand.ExecuteCommand(input.ToCreateAccountDto());
             return Ok();
         }
 
@@ -47,21 +47,21 @@ namespace API.Controllers.Accounts
         }
 
         [HttpGet("{id}")]
-        public async Task<AccountViewModel> GetAccount([FromRoute] Guid id)
+        public async Task<AccountViewModel> GetById([FromRoute] Guid id)
         {
             var account = await _getAccountCommand.ExecuteCommand(id);
             return new AccountViewModel(account);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateAccount([FromRoute] Guid id, [FromBody] UpdateAccountInputModel input)
+        public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] UpdateAccountInputModel input)
         {
-            await _updateAccountCommand.ExecuteCommand(id, input.ToDto());
+            await _updateAccountCommand.ExecuteCommand(id, input.ToUpdateAccountDto());
             return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteAccount([FromRoute] Guid id)
+        public async Task<ActionResult> Delete([FromRoute] Guid id)
         {
             await _deleteAccountCommand.ExecuteCommand(id);
             return Ok();

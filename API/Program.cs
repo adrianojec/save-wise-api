@@ -40,6 +40,7 @@ builder.Services.AddScoped<IDeleteAccountCommand, DeleteAccountCommand>();
 
 // Dependency Injection - Transaction Commands
 builder.Services.AddScoped<ICreateTransactionCommand, CreateTransactionCommand>();
+builder.Services.AddScoped<IGetTransactionsCommand, GetTransactionsCommand>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 using API.Controllers.Transactions.InputModels;
+using API.Controllers.Transactions.ViewModels;
 using Application.Commands.Transactions.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,9 +10,14 @@ namespace API.Controllers.Transactions
     public class TransactionsController : ControllerBase
     {
         private readonly ICreateTransactionCommand _createTransactionCommand;
-        public TransactionsController(ICreateTransactionCommand createTransactionCommand)
+        private readonly IGetTransactionsCommand _getTransactionsCommand;
+        public TransactionsController(
+            ICreateTransactionCommand createTransactionCommand,
+            IGetTransactionsCommand getTransactionsCommand
+            )
         {
             _createTransactionCommand = createTransactionCommand;
+            _getTransactionsCommand = getTransactionsCommand;
         }
 
         [HttpPost]
@@ -19,6 +25,13 @@ namespace API.Controllers.Transactions
         {
             await _createTransactionCommand.ExecuteCommand(accountId, input.ToCreateTransactionDto());
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<TransactionViewModel>>> GetAll()
+        {
+            var transactions = await _getTransactionsCommand.ExecuteCommand();
+            return transactions.Select(transaction => new TransactionViewModel(transaction)).ToList();
         }
     }
 }

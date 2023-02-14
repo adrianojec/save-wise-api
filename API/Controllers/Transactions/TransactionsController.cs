@@ -11,13 +11,16 @@ namespace API.Controllers.Transactions
     {
         private readonly ICreateTransactionCommand _createTransactionCommand;
         private readonly IGetTransactionsCommand _getTransactionsCommand;
+        private readonly IGetTransactionCommand _getTransactionCommand;
         public TransactionsController(
             ICreateTransactionCommand createTransactionCommand,
-            IGetTransactionsCommand getTransactionsCommand
+            IGetTransactionsCommand getTransactionsCommand,
+            IGetTransactionCommand getTransactionCommand
             )
         {
             _createTransactionCommand = createTransactionCommand;
             _getTransactionsCommand = getTransactionsCommand;
+            _getTransactionCommand = getTransactionCommand;
         }
 
         [HttpPost]
@@ -32,6 +35,13 @@ namespace API.Controllers.Transactions
         {
             var transactions = await _getTransactionsCommand.ExecuteCommand();
             return transactions.Select(transaction => new TransactionViewModel(transaction)).ToList();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TransactionViewModel>> Get([FromRoute] Guid accountId, [FromRoute] Guid id)
+        {
+            var transaction = await _getTransactionCommand.ExecuteCommand(accountId, id);
+            return new TransactionViewModel(transaction);
         }
     }
 }

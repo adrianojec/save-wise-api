@@ -32,15 +32,16 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 // Dependency Injection - Account Commands
-builder.Services.AddScoped<ICreateAccountCommand, CreateAccountCommand>();
 builder.Services.AddScoped<IGetAccountsCommand, GetAccountsCommand>();
 builder.Services.AddScoped<IGetAccountCommand, GetAccountCommand>();
+builder.Services.AddScoped<ICreateAccountCommand, CreateAccountCommand>();
 builder.Services.AddScoped<IUpdateAccountCommand, UpdateAccountCommand>();
 builder.Services.AddScoped<IDeleteAccountCommand, DeleteAccountCommand>();
 
 // Dependency Injection - Transaction Commands
-builder.Services.AddScoped<ICreateTransactionCommand, CreateTransactionCommand>();
+builder.Services.AddScoped<IGetTransactionCommand, GetTransactionCommand>();
 builder.Services.AddScoped<IGetTransactionsCommand, GetTransactionsCommand>();
+builder.Services.AddScoped<ICreateTransactionCommand, CreateTransactionCommand>();
 
 var app = builder.Build();
 

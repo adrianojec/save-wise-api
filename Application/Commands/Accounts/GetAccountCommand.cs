@@ -12,10 +12,13 @@ namespace Application.Commands.Accounts
             _accountRepository = accountRepository;
         }
 
-        public async Task<AccountDto> ExecuteCommand(Guid id)
+        public async Task<AccountWithTransactionsDto> ExecuteCommand(Guid id)
         {
             var account = await _accountRepository.GetById(id);
-            return new AccountDto(account);
+
+            if (account == null) throw new NullReferenceException();
+
+            return new AccountWithTransactionsDto(account);
         }
     }
 }

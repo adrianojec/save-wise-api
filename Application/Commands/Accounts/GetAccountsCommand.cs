@@ -15,6 +15,9 @@ namespace Application.Commands.Accounts
         public async Task<List<AccountDto>> ExecuteCommand()
         {
             var accounts = await _accountRepository.GetAll();
+
+            if (accounts == null) throw new NullReferenceException();
+
             return accounts.Select(account => new AccountDto(account)).ToList();
         }
     }

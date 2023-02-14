@@ -47,10 +47,10 @@ namespace API.Controllers.Accounts
         }
 
         [HttpGet("{id}")]
-        public async Task<AccountViewModel> GetById([FromRoute] Guid id)
+        public async Task<AccountWithTransactionsViewModel> GetById([FromRoute] Guid id)
         {
             var account = await _getAccountCommand.ExecuteCommand(id);
-            return new AccountViewModel(account);
+            return new AccountWithTransactionsViewModel(account);
         }
 
         [HttpPut("{id}")]

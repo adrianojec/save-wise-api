@@ -42,6 +42,7 @@ builder.Services.AddScoped<IDeleteAccountCommand, DeleteAccountCommand>();
 builder.Services.AddScoped<IGetTransactionCommand, GetTransactionCommand>();
 builder.Services.AddScoped<IGetTransactionsCommand, GetTransactionsCommand>();
 builder.Services.AddScoped<ICreateTransactionCommand, CreateTransactionCommand>();
+builder.Services.AddScoped<IUpdateTransactionCommand, UpdateTransactionCommand>();
 
 var app = builder.Build();
 

@@ -12,15 +12,18 @@ namespace API.Controllers.Transactions
         private readonly ICreateTransactionCommand _createTransactionCommand;
         private readonly IGetTransactionsCommand _getTransactionsCommand;
         private readonly IGetTransactionCommand _getTransactionCommand;
+        private readonly IUpdateTransactionCommand _updateTransactionCommand;
         public TransactionsController(
             ICreateTransactionCommand createTransactionCommand,
             IGetTransactionsCommand getTransactionsCommand,
-            IGetTransactionCommand getTransactionCommand
+            IGetTransactionCommand getTransactionCommand,
+            IUpdateTransactionCommand updateTransactionCommand
             )
         {
             _createTransactionCommand = createTransactionCommand;
             _getTransactionsCommand = getTransactionsCommand;
             _getTransactionCommand = getTransactionCommand;
+            _updateTransactionCommand = updateTransactionCommand;
         }
 
         [HttpPost]
@@ -42,6 +45,13 @@ namespace API.Controllers.Transactions
         {
             var transaction = await _getTransactionCommand.ExecuteCommand(accountId, id);
             return new TransactionViewModel(transaction);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update([FromRoute] Guid accountId, [FromRoute] Guid id, [FromBody] UpdateTransactionInputModel input)
+        {
+            await _updateTransactionCommand.ExecuteCommand(accountId, id, input.ToUpdateTransactionDto());
+            return Ok();
         }
     }
 }

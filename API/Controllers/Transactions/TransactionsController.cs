@@ -51,9 +51,9 @@ namespace API.Controllers.Transactions
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update([FromRoute] Guid accountId, [FromRoute] Guid id, [FromBody] UpdateTransactionInputModel input)
+        public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] UpdateTransactionInputModel input)
         {
-            await _updateTransactionCommand.ExecuteCommand(accountId, id, input.ToUpdateTransactionDto());
+            await _updateTransactionCommand.ExecuteCommand(id, input.ToUpdateTransactionDto());
             return Ok();
         }
 

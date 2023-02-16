@@ -4,6 +4,6 @@ namespace Application.Commands.Transactions.Interfaces
 {
     public interface IUpdateTransactionCommand
     {
-        Task ExecuteCommand(Guid accountId, Guid id, UpdateTransactionDto item);
+        Task ExecuteCommand(Guid id, UpdateTransactionDto item);
     }
 }

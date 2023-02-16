@@ -13,17 +13,20 @@ namespace API.Controllers.Transactions
         private readonly IGetTransactionsCommand _getTransactionsCommand;
         private readonly IGetTransactionCommand _getTransactionCommand;
         private readonly IUpdateTransactionCommand _updateTransactionCommand;
+        private readonly IDeleteTransactionCommand _deleteTransactionCommand;
         public TransactionsController(
             ICreateTransactionCommand createTransactionCommand,
             IGetTransactionsCommand getTransactionsCommand,
             IGetTransactionCommand getTransactionCommand,
-            IUpdateTransactionCommand updateTransactionCommand
+            IUpdateTransactionCommand updateTransactionCommand,
+            IDeleteTransactionCommand deleteTransactionCommand
             )
         {
             _createTransactionCommand = createTransactionCommand;
             _getTransactionsCommand = getTransactionsCommand;
             _getTransactionCommand = getTransactionCommand;
             _updateTransactionCommand = updateTransactionCommand;
+            _deleteTransactionCommand = deleteTransactionCommand;
         }
 
         [HttpPost]
@@ -51,6 +54,13 @@ namespace API.Controllers.Transactions
         public async Task<ActionResult> Update([FromRoute] Guid accountId, [FromRoute] Guid id, [FromBody] UpdateTransactionInputModel input)
         {
             await _updateTransactionCommand.ExecuteCommand(accountId, id, input.ToUpdateTransactionDto());
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete([FromRoute] Guid id)
+        {
+            await _deleteTransactionCommand.ExecuteCommand(id);
             return Ok();
         }
     }

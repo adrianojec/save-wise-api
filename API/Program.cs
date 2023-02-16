@@ -43,6 +43,7 @@ builder.Services.AddScoped<IGetTransactionCommand, GetTransactionCommand>();
 builder.Services.AddScoped<IGetTransactionsCommand, GetTransactionsCommand>();
 builder.Services.AddScoped<ICreateTransactionCommand, CreateTransactionCommand>();
 builder.Services.AddScoped<IUpdateTransactionCommand, UpdateTransactionCommand>();
+builder.Services.AddScoped<IDeleteTransactionCommand, DeleteTransactionCommand>();
 
 var app = builder.Build();
 

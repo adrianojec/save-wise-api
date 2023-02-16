@@ -18,7 +18,7 @@ namespace Application.Commands.Transactions
                 AccountId = accountId,
                 Amount = item.Amount,
                 TransactionType = item.TransactionType,
-                DateCreated = item.DateCreated,
+                Date = item.Date,
             };
 
             _transactionRepository.Add(transaction.ToTransactionEntity());

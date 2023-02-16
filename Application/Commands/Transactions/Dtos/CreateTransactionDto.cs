@@ -9,7 +9,7 @@ namespace Application.Commands.Transactions.Dtos
         public Guid AccountId { get; set; }
         public TransactionType TransactionType { get; set; }
         public double Amount { get; set; } = 0.0;
-        public DateTime DateCreated { get; set; }
+        public DateTime Date { get; set; }
 
         public Transaction ToTransactionEntity()
         {
@@ -18,7 +18,7 @@ namespace Application.Commands.Transactions.Dtos
                 AccountId = AccountId,
                 TransactionType = TransactionType,
                 Amount = Amount,
-                DateCreated = DateCreated,
+                Date = Date,
             };
 
             return transaction;

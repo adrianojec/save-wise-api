@@ -11,13 +11,13 @@ namespace Application.Commands.Transactions.Dtos
             AccountId = item.AccountId;
             TransactionType = item.TransactionType;
             Amount = item.Amount;
-            DateCreated = item.DateCreated;
+            Date = item.Date;
 
         }
         public Guid Id { get; set; }
         public Guid AccountId { get; set; }
         public TransactionType TransactionType { get; set; }
         public double Amount { get; set; } = 0.0;
-        public DateTime DateCreated { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -34,7 +34,6 @@ namespace Application.Repositories.TransactionRepository
         public async Task Delete(Guid id)
         {
             var transaction = await GetById(id);
-
             _context.Transactions.Remove(transaction);
         }
 

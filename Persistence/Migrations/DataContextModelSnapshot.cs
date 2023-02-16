@@ -47,7 +47,7 @@ namespace Persistence.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("REAL");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("TransactionType")

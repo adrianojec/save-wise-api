@@ -8,7 +8,7 @@ namespace API.Controllers.Transactions.InputModels
     {
         public TransactionType TransactionType { get; set; }
         public double Amount { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime Date { get; set; }
 
         public CreateTransactionDto ToCreateTransactionDto()
         {
@@ -16,7 +16,7 @@ namespace API.Controllers.Transactions.InputModels
             {
                 TransactionType = TransactionType,
                 Amount = Amount,
-                DateCreated = DateCreated,
+                Date = Date,
             };
 
             return transaction;

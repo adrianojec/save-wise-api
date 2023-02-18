@@ -62,6 +62,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("AccountId")

@@ -11,7 +11,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230218131342_InitialMigrations")]
+    [Migration("20230218150419_InitialMigrations")]
     partial class InitialMigrations
     {
         /// <inheritdoc />
@@ -65,6 +65,7 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("AccountId")

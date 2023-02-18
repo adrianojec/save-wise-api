@@ -4,6 +4,7 @@ using Application.Commands.Accounts.Interfaces;
 using Application.Commands.Transactions;
 using Application.Commands.Transactions.Interfaces;
 using Application.Context;
+using Application.Repositories.ActivityRepository;
 using Application.Repositories.TransactionRepository;
 using Application.UserRepository;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ builder.Services.AddScoped<IDataContext, DataContext>();
 // Dependency Injection - Repository
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 
 // Dependency Injection - Account Commands
 builder.Services.AddScoped<IGetAccountsCommand, GetAccountsCommand>();
@@ -44,6 +46,7 @@ builder.Services.AddScoped<IGetTransactionsCommand, GetTransactionsCommand>();
 builder.Services.AddScoped<ICreateTransactionCommand, CreateTransactionCommand>();
 builder.Services.AddScoped<IUpdateTransactionCommand, UpdateTransactionCommand>();
 builder.Services.AddScoped<IDeleteTransactionCommand, DeleteTransactionCommand>();
+
 
 var app = builder.Build();
 

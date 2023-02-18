@@ -5,6 +5,8 @@ namespace Domain
 {
     public class Transaction
     {
+        // Disallows database to auto-generate an Id
+        // [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid Id { get; set; }
         public Guid AccountId { get; set; }
         public Account Account { get; set; } = default!;

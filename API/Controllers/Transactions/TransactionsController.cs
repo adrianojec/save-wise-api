@@ -37,9 +37,9 @@ namespace API.Controllers.Transactions
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TransactionViewModel>>> GetAll()
+        public async Task<ActionResult<List<TransactionViewModel>>> GetAll([FromRoute] Guid accountId)
         {
-            var transactions = await _getTransactionsCommand.ExecuteCommand();
+            var transactions = await _getTransactionsCommand.ExecuteCommand(accountId);
             return transactions.Select(transaction => new TransactionViewModel(transaction)).ToList();
         }
 

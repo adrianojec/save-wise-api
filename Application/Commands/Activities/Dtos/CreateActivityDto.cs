@@ -1,4 +1,5 @@
 using Domain;
+using Domain.Enums;
 
 namespace Application.Commands.Activities.Dtos
 {
@@ -7,6 +8,7 @@ namespace Application.Commands.Activities.Dtos
         public Guid Id { get; set; }
         public Guid AccountId { get; set; }
         public Guid TransactionId { get; set; }
+        public ActivityType ActivityType { get; set; }
         public DateTime DateCreated { get; set; }
 
         public Activity ToActivityEntity()
@@ -16,6 +18,7 @@ namespace Application.Commands.Activities.Dtos
                 Id = Id,
                 AccountId = AccountId,
                 TransactionId = TransactionId,
+                ActivityType = ActivityType,
                 DateCreated = DateCreated,
             };
 

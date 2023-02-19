@@ -7,6 +7,7 @@ namespace Domain
         public Guid Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public DateTime DateCreated { get; set; }
+        public bool isArchived { get; set; }
         public List<Transaction> Transactions { get; set; } = new List<Transaction>();
         public List<Activity> Activities { get; set; } = new List<Activity>();
         public double Total

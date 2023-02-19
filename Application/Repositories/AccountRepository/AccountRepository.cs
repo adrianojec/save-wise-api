@@ -43,7 +43,10 @@ namespace Application.AccountRepository
         public async Task Delete(Guid id)
         {
             var account = await GetById(id);
-            _context.Accounts.Remove(account);
+
+            if (account == null) throw new NullReferenceException();
+
+            account.isArchived = true;
         }
         public async Task SaveChangesAsync()
         {

@@ -3,6 +3,7 @@ using Application.Commands.Transactions.Dtos;
 using Application.Commands.Transactions.Interfaces;
 using Application.Repositories.ActivityRepository;
 using Application.Repositories.TransactionRepository;
+using Domain.Enums;
 
 namespace Application.Commands.Transactions
 {
@@ -10,7 +11,8 @@ namespace Application.Commands.Transactions
     {
         private readonly ITransactionRepository _transactionRepository;
         private readonly IActivityRepository _activityRepository;
-        public CreateTransactionCommand(
+        public CreateTransactionCommand
+        (
             ITransactionRepository transactionRepository,
             IActivityRepository activityRepository
         )
@@ -33,6 +35,7 @@ namespace Application.Commands.Transactions
             {
                 AccountId = accountId,
                 TransactionId = transaction.Id,
+                ActivityType = ActivityType.Create,
                 DateCreated = DateTime.Now,
             };
 

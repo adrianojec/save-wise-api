@@ -15,7 +15,7 @@ namespace Application.Commands.Transactions
         {
             var transactions = await _transactionRepository.GetAll();
             var accountTransactions = transactions.Where(transaction => transaction.AccountId == accountId);
-            return accountTransactions.Select(transaction => new TransactionDto(transaction)).ToList();
+            return accountTransactions.Where(account => !account.isArchived).Select(transaction => new TransactionDto(transaction)).ToList();
         }
     }
 }

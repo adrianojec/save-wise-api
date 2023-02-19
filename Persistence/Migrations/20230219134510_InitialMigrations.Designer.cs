@@ -11,7 +11,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230218150419_InitialMigrations")]
+    [Migration("20230219134510_InitialMigrations")]
     partial class InitialMigrations
     {
         /// <inheritdoc />
@@ -33,6 +33,9 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("isArchived")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Accounts");
@@ -46,6 +49,9 @@ namespace Persistence.Migrations
 
                     b.Property<Guid>("AccountId")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("ActivityType")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
@@ -78,6 +84,9 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("TransactionType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isArchived")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

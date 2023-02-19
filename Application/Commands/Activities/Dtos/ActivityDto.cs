@@ -9,6 +9,7 @@ namespace Application.Commands.Activities.Dtos
         {
             AccountId = item.AccountId;
             TransactionId = item.TransactionId;
+            ActivityType = item.ActivityType;
             DateCreated = item.DateCreated;
         }
         public Guid AccountId { get; set; }

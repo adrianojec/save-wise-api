@@ -30,6 +30,9 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("isArchived")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("Accounts");
@@ -43,6 +46,9 @@ namespace Persistence.Migrations
 
                     b.Property<Guid>("AccountId")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("ActivityType")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
@@ -75,6 +81,9 @@ namespace Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("TransactionType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isArchived")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

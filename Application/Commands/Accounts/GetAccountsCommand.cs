@@ -18,7 +18,7 @@ namespace Application.Commands.Accounts
 
             if (accounts == null) throw new NullReferenceException();
 
-            return accounts.Select(account => new AccountDto(account)).ToList();
+            return accounts.Where(account => !account.isArchived).Select(account => new AccountDto(account)).ToList();
         }
     }
 }

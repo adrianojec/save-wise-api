@@ -20,7 +20,6 @@ namespace Application.Commands.Accounts
 
             account.Title = item.Title;
 
-            await _accountRepository.Update(account);
             await _accountRepository.SaveChangesAsync();
 
         }

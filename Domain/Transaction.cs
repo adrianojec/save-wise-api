@@ -11,6 +11,7 @@ namespace Domain
         public Guid AccountId { get; set; }
         public Account Account { get; set; } = default!;
         public TransactionType TransactionType { get; set; }
+        public bool isArchived { get; set; }
         public double Amount { get; set; } = 0.0;
         public DateTime Date { get; set; }
 

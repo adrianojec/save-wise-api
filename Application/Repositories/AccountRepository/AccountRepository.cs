@@ -20,12 +20,12 @@ namespace Application.AccountRepository
 
         public async Task<List<Account>> GetAll()
         {
-            return await _context.Accounts.ToListAsync();
+            return await _context.Accounts.Include(account => account.Transactions).ToListAsync();
         }
 
         public async Task<Account> GetById(Guid id)
         {
-            var account = await _context.Accounts.FirstOrDefaultAsync(account => account.Id == id);
+            var account = await _context.Accounts.Include(account => account.Transactions).FirstOrDefaultAsync(account => account.Id == id);
 
             if (account == null) throw new NullReferenceException();
 

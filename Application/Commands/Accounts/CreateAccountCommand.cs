@@ -1,5 +1,6 @@
 using Application.Commands.Accounts.Dtos;
 using Application.Commands.Accounts.Interfaces;
+using Application.Core;
 using Application.UserRepository;
 using Domain;
 
@@ -12,11 +13,14 @@ namespace Application.Commands.Accounts
         {
             _accountRepository = accountRepository;
         }
-        public async Task ExecuteCommand(CreateAccountDto input)
+        public async Task<Result<bool>> ExecuteCommand(CreateAccountDto input)
         {
-            _accountRepository.Add(input.ToAccountEntity());
+            if (string.IsNullOrEmpty(input.Title)) return Result<bool>.Failure("Title is required");
 
+            _accountRepository.Add(input.ToAccountEntity());
             await _accountRepository.SaveChangesAsync();
+
+            return Result<bool>.Success(true);
         }
     }
 }

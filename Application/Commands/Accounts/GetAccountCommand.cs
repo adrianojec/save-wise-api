@@ -1,5 +1,6 @@
 using Application.Commands.Accounts.Dtos;
 using Application.Commands.Accounts.Interfaces;
+using Application.Core;
 using Application.UserRepository;
 
 namespace Application.Commands.Accounts
@@ -12,13 +13,15 @@ namespace Application.Commands.Accounts
             _accountRepository = accountRepository;
         }
 
-        public async Task<AccountDto> ExecuteCommand(Guid id)
+        public async Task<Result<AccountDto>> ExecuteCommand(Guid id)
         {
             var account = await _accountRepository.GetById(id);
 
-            if (account == null) throw new NullReferenceException();
+            if (account == null) return Result<AccountDto>.Failure("Account not found.");
 
-            return new AccountDto(account);
+            var data = new AccountDto(account);
+
+            return Result<AccountDto>.Success(data);
         }
     }
 }

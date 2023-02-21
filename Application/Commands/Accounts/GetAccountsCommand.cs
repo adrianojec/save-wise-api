@@ -1,5 +1,6 @@
 using Application.Commands.Accounts.Dtos;
 using Application.Commands.Accounts.Interfaces;
+using Application.Core;
 using Application.UserRepository;
 
 namespace Application.Commands.Accounts
@@ -10,15 +11,14 @@ namespace Application.Commands.Accounts
         public GetAccountsCommand(IAccountRepository accountRepository)
         {
             _accountRepository = accountRepository;
-
         }
-        public async Task<List<AccountDto>> ExecuteCommand()
+        public async Task<Result<List<AccountDto>>> ExecuteCommand()
         {
             var accounts = await _accountRepository.GetAll();
 
-            if (accounts == null) throw new NullReferenceException();
+            var data = accounts.Where(account => !account.isArchived).Select(account => new AccountDto(account)).ToList();
 
-            return accounts.Where(account => !account.isArchived).Select(account => new AccountDto(account)).ToList();
+            return Result<List<AccountDto>>.Success(data);
         }
     }
 }

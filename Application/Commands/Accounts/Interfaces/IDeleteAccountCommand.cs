@@ -1,7 +1,9 @@
+using Application.Core;
+
 namespace Application.Commands.Accounts.Interfaces
 {
     public interface IDeleteAccountCommand
     {
-        Task ExecuteCommand(Guid id);
+        Task<Result<bool>> ExecuteCommand(Guid id);
     }
 }

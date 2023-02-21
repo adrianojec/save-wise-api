@@ -1,4 +1,5 @@
 using Application.Commands.Accounts.Interfaces;
+using Application.Core;
 using Application.UserRepository;
 
 namespace Application.Commands.Accounts
@@ -11,10 +12,16 @@ namespace Application.Commands.Accounts
             _accountRepository = accountRepository;
 
         }
-        public async Task ExecuteCommand(Guid id)
+        public async Task<Result<bool>> ExecuteCommand(Guid id)
         {
-            await _accountRepository.Delete(id);
+            var account = await _accountRepository.GetById(id);
+
+            if (account == null) return Result<bool>.Failure("Account not found");
+
+            await _accountRepository.Delete(account.Id);
             await _accountRepository.SaveChangesAsync();
+
+            return Result<bool>.Success(true);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Application.Commands.Accounts
 
             if (account == null) return Result<bool>.Failure("Account not found");
 
-            await _accountRepository.Delete(account.Id);
+            await _accountRepository.Delete(id);
             await _accountRepository.SaveChangesAsync();
 
             return Result<bool>.Success(true);

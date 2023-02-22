@@ -1,8 +1,10 @@
 using Application.Commands.Activities.Dtos;
 using Application.Commands.Transactions.Dtos;
 using Application.Commands.Transactions.Interfaces;
+using Application.Core;
 using Application.Repositories.ActivityRepository;
 using Application.Repositories.TransactionRepository;
+using Application.UserRepository;
 using Domain.Enums;
 
 namespace Application.Commands.Transactions
@@ -11,24 +13,33 @@ namespace Application.Commands.Transactions
     {
         private readonly ITransactionRepository _transactionRepository;
         private readonly IActivityRepository _activityRepository;
+        private readonly IAccountRepository _accountRepository;
         public UpdateTransactionCommand
         (
             ITransactionRepository transactionRepository,
-            IActivityRepository activityRepository
+            IActivityRepository activityRepository,
+            IAccountRepository accountRepository
         )
         {
             _transactionRepository = transactionRepository;
             _activityRepository = activityRepository;
+            _accountRepository = accountRepository;
         }
-        public async Task ExecuteCommand(Guid id, UpdateTransactionDto item)
+        public async Task<Result<bool>> ExecuteCommand(Guid accountId, Guid id, UpdateTransactionDto input)
         {
+            var account = await _accountRepository.GetById(accountId);
+
+            if (account == null) return Result<bool>.Failure("Account not found.");
+
             var transaction = await _transactionRepository.GetById(id);
 
-            if (transaction == null) throw new NullReferenceException();
+            if (transaction == null) return Result<bool>.Failure("Transaction not found.");
 
-            transaction.Amount = item.Amount;
-            transaction.TransactionType = item.TransactionType;
-            transaction.Date = item.Date;
+            if (input.Amount <= 0) return Result<bool>.Failure("Amount must be greater than zero");
+
+            transaction.Amount = input.Amount;
+            transaction.TransactionType = input.TransactionType;
+            transaction.Date = input.Date;
 
             var activity = new CreateActivityDto
             {
@@ -40,6 +51,8 @@ namespace Application.Commands.Transactions
 
             _activityRepository.Add(activity.ToActivityEntity());
             await _transactionRepository.SaveChangesAsync();
+
+            return Result<bool>.Success(true);
         }
     }
 }

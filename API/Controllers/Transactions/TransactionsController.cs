@@ -30,38 +30,55 @@ namespace API.Controllers.Transactions
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromRoute] Guid accountId, [FromBody] CreateTransactionInputModel input)
+        public async Task<IActionResult> Create([FromRoute] Guid accountId, [FromBody] CreateTransactionInputModel input)
         {
-            await _createTransactionCommand.ExecuteCommand(accountId, input.ToCreateTransactionDto());
-            return Ok();
+            var result = await _createTransactionCommand.ExecuteCommand(accountId, input.ToCreateTransactionDto());
+
+            if (!result.isSuccess) return BadRequest(result.Error);
+
+            return Ok(result.Value);
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TransactionViewModel>>> GetAll([FromRoute] Guid accountId)
+        public async Task<IActionResult> GetAll([FromRoute] Guid accountId)
         {
-            var transactions = await _getTransactionsCommand.ExecuteCommand(accountId);
-            return transactions.Select(transaction => new TransactionViewModel(transaction)).ToList();
+            var result = await _getTransactionsCommand.ExecuteCommand(accountId);
+
+            if (!result.isSuccess) return BadRequest(result.Error);
+
+            var transactions = result.Value.Select(transaction => new TransactionViewModel(transaction)).ToList();
+
+            return Ok(transactions);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<TransactionViewModel>> Get([FromRoute] Guid accountId, [FromRoute] Guid id)
+        public async Task<IActionResult> Get([FromRoute] Guid accountId, [FromRoute] Guid id)
         {
-            var transaction = await _getTransactionCommand.ExecuteCommand(accountId, id);
-            return new TransactionViewModel(transaction);
+            var result = await _getTransactionCommand.ExecuteCommand(accountId, id);
+
+            if (!result.isSuccess) return BadRequest(result.Error);
+
+            return Ok(new TransactionViewModel(result.Value));
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update([FromRoute] Guid id, [FromBody] UpdateTransactionInputModel input)
+        public async Task<IActionResult> Update([FromRoute] Guid accountId, [FromRoute] Guid id, [FromBody] UpdateTransactionInputModel input)
         {
-            await _updateTransactionCommand.ExecuteCommand(id, input.ToUpdateTransactionDto());
-            return Ok();
+            var result = await _updateTransactionCommand.ExecuteCommand(accountId, id, input.ToUpdateTransactionDto());
+
+            if (!result.isSuccess) return BadRequest(result.Error);
+
+            return Ok(result.Value);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete([FromRoute] Guid id)
+        public async Task<IActionResult> Delete([FromRoute] Guid accountId, [FromRoute] Guid id)
         {
-            await _deleteTransactionCommand.ExecuteCommand(id);
-            return Ok();
+            var result = await _deleteTransactionCommand.ExecuteCommand(accountId, id);
+
+            if (!result.isSuccess) return BadRequest(result.Error);
+
+            return Ok(result.Value);
         }
     }
 }

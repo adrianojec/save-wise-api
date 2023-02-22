@@ -1,9 +1,10 @@
 using Application.Commands.Transactions.Dtos;
+using Application.Core;
 
 namespace Application.Commands.Transactions.Interfaces
 {
     public interface IGetTransactionsCommand
     {
-        Task<List<TransactionDto>> ExecuteCommand(Guid accountId);
+        Task<Result<List<TransactionDto>>> ExecuteCommand(Guid accountId);
     }
 }

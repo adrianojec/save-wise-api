@@ -1,9 +1,10 @@
 using Application.Commands.Transactions.Dtos;
+using Application.Core;
 
 namespace Application.Commands.Transactions.Interfaces
 {
     public interface ICreateTransactionCommand
     {
-        Task ExecuteCommand(Guid accountId, CreateTransactionDto item);
+        Task<Result<bool>> ExecuteCommand(Guid accountId, CreateTransactionDto item);
     }
 }

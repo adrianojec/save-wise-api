@@ -20,9 +20,6 @@ namespace Application.Repositories.TransactionRepository
         public async Task<Transaction> GetById(Guid id)
         {
             var transaction = await _context.Transactions.FirstOrDefaultAsync(transaction => transaction.Id == id);
-
-            if (transaction == null) throw new NullReferenceException();
-
             return transaction;
         }
 
@@ -34,18 +31,13 @@ namespace Application.Repositories.TransactionRepository
         public async Task Delete(Guid id)
         {
             var transaction = await GetById(id);
-
-            if (transaction == null) throw new NullReferenceException();
-
             transaction.isArchived = true;
         }
 
         public async Task Update(Transaction item)
         {
             var transaction = await GetById(item.Id);
-
-            if (transaction == null) throw new NullReferenceException();
-
+            transaction = item;
         }
 
         public async Task SaveChangesAsync()

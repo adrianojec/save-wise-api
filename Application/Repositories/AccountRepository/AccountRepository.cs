@@ -20,7 +20,7 @@ namespace Application.AccountRepository
 
         public async Task<List<Account>> GetAll()
         {
-            return await _context.Accounts.Include(account => account.Transactions).ToListAsync();
+            return await _context.Accounts.Include(account => account.Transactions).Where(account => !account.isArchived).ToListAsync();
         }
 
         public async Task<Account> GetById(Guid id)
@@ -33,7 +33,7 @@ namespace Application.AccountRepository
         {
             var account = await GetById(item.Id);
 
-            account.Title = item.Title;
+            account = item;
         }
         public async Task Delete(Guid id)
         {

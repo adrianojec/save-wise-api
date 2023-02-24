@@ -15,10 +15,15 @@ namespace API.Controllers.Activities
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ActivityViewModel>>> GetAll([FromRoute] Guid accountId)
+        public async Task<IActionResult> GetAll([FromRoute] Guid accountId)
         {
-            var activities = await _getActivitiesCommand.ExecuteCommand(accountId);
-            return activities.Select(activity => new ActivityViewModel(activity)).ToList();
+            var result = await _getActivitiesCommand.ExecuteCommand(accountId);
+
+            if (!result.isSuccess) return BadRequest(result.Error);
+
+            var activities = result.Value.Select(activity => new ActivityViewModel(activity)).ToList();
+
+            return Ok(activities);
         }
     }
 }

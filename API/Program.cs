@@ -1,12 +1,6 @@
-using Application.Commands.Accounts;
-using Application.Commands.Accounts.Interfaces;
-using Application.Commands.Activities;
-using Application.Commands.Transactions;
-using Application.Commands.Transactions.Interfaces;
+using Application.Commands;
 using Application.Context;
-using Application.Repositories.AccountRepositories;
-using Application.Repositories.ActivityRepositories;
-using Application.Repositories.TransactionRepositories;
+using Application.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -27,29 +21,8 @@ builder.Services.AddDbContext<DataContext>(opt =>
 
 // Dependency Injection - DataContext
 builder.Services.AddScoped<IDataContext, DataContext>();
-
-// Dependency Injection - Repository
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
-builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
-
-// Dependency Injection - Account Commands
-builder.Services.AddScoped<IGetAccountsCommand, GetAccountsCommand>();
-builder.Services.AddScoped<IGetAccountCommand, GetAccountCommand>();
-builder.Services.AddScoped<ICreateAccountCommand, CreateAccountCommand>();
-builder.Services.AddScoped<IUpdateAccountCommand, UpdateAccountCommand>();
-builder.Services.AddScoped<IDeleteAccountCommand, DeleteAccountCommand>();
-
-// Dependency Injection - Transaction Commands
-builder.Services.AddScoped<IGetTransactionCommand, GetTransactionCommand>();
-builder.Services.AddScoped<IGetTransactionsCommand, GetTransactionsCommand>();
-builder.Services.AddScoped<ICreateTransactionCommand, CreateTransactionCommand>();
-builder.Services.AddScoped<IUpdateTransactionCommand, UpdateTransactionCommand>();
-builder.Services.AddScoped<IDeleteTransactionCommand, DeleteTransactionCommand>();
-
-// Dependency Injection - Activity Commands
-builder.Services.AddScoped<IGetActivitiesCommand, GetActivitiesCommand>();
-
+builder.Services.AddRepositories();
+builder.Services.AddCommands();
 
 var app = builder.Build();
 

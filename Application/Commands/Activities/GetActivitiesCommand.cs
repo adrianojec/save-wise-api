@@ -1,7 +1,7 @@
 using Application.Commands.Activities.Dtos;
 using Application.Core;
-using Application.Repositories.ActivityRepository;
-using Application.UserRepository;
+using Application.Repositories.AccountRepositories;
+using Application.Repositories.ActivityRepositories;
 
 namespace Application.Commands.Activities
 {

@@ -1,6 +1,6 @@
 using Domain;
 
-namespace Application.Repositories.TransactionRepository
+namespace Application.Repositories.TransactionRepositories
 {
     public interface ITransactionRepository : IBaseRepository<Transaction>
     {

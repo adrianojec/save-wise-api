@@ -1,6 +1,6 @@
 using Application.Commands.Accounts.Interfaces;
 using Application.Core;
-using Application.UserRepository;
+using Application.Repositories.AccountRepositories;
 
 namespace Application.Commands.Accounts
 {

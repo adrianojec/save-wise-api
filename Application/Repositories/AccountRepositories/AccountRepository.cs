@@ -1,9 +1,8 @@
 using Application.Context;
-using Application.UserRepository;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.AccountRepository
+namespace Application.Repositories.AccountRepositories
 {
     public class AccountRepository : IAccountRepository
     {

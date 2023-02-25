@@ -1,7 +1,7 @@
 using Application.Commands.Accounts.Dtos;
 using Application.Commands.Accounts.Interfaces;
 using Application.Core;
-using Application.UserRepository;
+using Application.Repositories.AccountRepositories;
 using Domain;
 
 namespace Application.Commands.Accounts

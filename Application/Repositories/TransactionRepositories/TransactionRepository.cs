@@ -2,7 +2,7 @@ using Application.Context;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Repositories.TransactionRepository
+namespace Application.Repositories.TransactionRepositories
 {
     public class TransactionRepository : ITransactionRepository
     {

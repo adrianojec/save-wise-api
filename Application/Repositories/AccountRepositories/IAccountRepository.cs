@@ -1,6 +1,6 @@
 using Domain;
 
-namespace Application.UserRepository
+namespace Application.Repositories.AccountRepositories
 {
     public interface IAccountRepository : IBaseRepository<Account>
     {

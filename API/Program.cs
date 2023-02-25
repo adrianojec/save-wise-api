@@ -1,13 +1,12 @@
-using Application.AccountRepository;
 using Application.Commands.Accounts;
 using Application.Commands.Accounts.Interfaces;
 using Application.Commands.Activities;
 using Application.Commands.Transactions;
 using Application.Commands.Transactions.Interfaces;
 using Application.Context;
-using Application.Repositories.ActivityRepository;
-using Application.Repositories.TransactionRepository;
-using Application.UserRepository;
+using Application.Repositories.AccountRepositories;
+using Application.Repositories.ActivityRepositories;
+using Application.Repositories.TransactionRepositories;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 

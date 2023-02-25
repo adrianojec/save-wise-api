@@ -1,8 +1,8 @@
 using Application.Commands.Transactions.Dtos;
 using Application.Commands.Transactions.Interfaces;
 using Application.Core;
-using Application.Repositories.TransactionRepository;
-using Application.UserRepository;
+using Application.Repositories.AccountRepositories;
+using Application.Repositories.TransactionRepositories;
 
 namespace Application.Commands.Transactions
 {

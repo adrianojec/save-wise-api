@@ -2,8 +2,8 @@ using Application.Commands.Activities.Dtos;
 using Application.Commands.Transactions.Dtos;
 using Application.Commands.Transactions.Interfaces;
 using Application.Core;
-using Application.Repositories.ActivityRepository;
-using Application.Repositories.TransactionRepository;
+using Application.Repositories.ActivityRepositories;
+using Application.Repositories.TransactionRepositories;
 using Domain.Enums;
 
 namespace Application.Commands.Transactions

@@ -2,7 +2,7 @@ using Application.Context;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Repositories.ActivityRepository
+namespace Application.Repositories.ActivityRepositories
 {
     public class ActivityRepository : IActivityRepository
     {

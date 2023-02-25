@@ -40,7 +40,7 @@ namespace API.Controllers.Transactions
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromRoute] Guid accountId)
+        public async Task<ActionResult<List<TransactionViewModel>>> GetAll([FromRoute] Guid accountId)
         {
             var result = await _getTransactionsCommand.ExecuteCommand(accountId);
 
@@ -52,7 +52,7 @@ namespace API.Controllers.Transactions
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get([FromRoute] Guid accountId, [FromRoute] Guid id)
+        public async Task<ActionResult<TransactionViewModel>> Get([FromRoute] Guid accountId, [FromRoute] Guid id)
         {
             var result = await _getTransactionCommand.ExecuteCommand(accountId, id);
 

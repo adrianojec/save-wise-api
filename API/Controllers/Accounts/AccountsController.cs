@@ -33,13 +33,6 @@ namespace API.Controllers.Accounts
             _deleteAccountCommand = deleteAccountCommand;
         }
 
-        // protected ActionResult HandleResult<T>(Result<T> result)
-        // {
-        //     if (result.isSuccess && result.Value != null) return Ok(result.Value);
-        //     if (result.isSuccess && result.Value == null) return NotFound();
-        //     return BadRequest();
-        // }
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateAccountInputModel input)
         {
@@ -49,7 +42,7 @@ namespace API.Controllers.Accounts
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<List<AccountViewModel>>> GetAll()
         {
             var accounts = await _getAccountsCommand.ExecuteCommand();
 
@@ -61,7 +54,7 @@ namespace API.Controllers.Accounts
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] Guid id)
+        public async Task<ActionResult<AccountViewModel>> GetById([FromRoute] Guid id)
         {
             var account = await _getAccountCommand.ExecuteCommand(id);
 

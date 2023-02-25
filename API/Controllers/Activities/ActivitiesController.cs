@@ -15,7 +15,7 @@ namespace API.Controllers.Activities
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromRoute] Guid accountId)
+        public async Task<ActionResult<List<ActivityViewModel>>> GetAll([FromRoute] Guid accountId)
         {
             var result = await _getActivitiesCommand.ExecuteCommand(accountId);
 

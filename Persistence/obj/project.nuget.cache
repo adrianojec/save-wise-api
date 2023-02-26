@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "rlK/wWlPPgZtTGNXyoMQsN+bpiiOU69oRtRL0kcez502qlppTv719OlJ1HRvRXCMb+7gN4PNo5VTBP5PEwVUAg==",
+  "dgSpecHash": "PrYjK1EWkv3/liEunl6jqebagolpimiWGrZf5X6neXmagjYhb92DN+sWjxEcS4WL40NOz3+s6Oak8+PUkq0wMw==",
   "success": true,
   "projectFilePath": "/Users/jecadriano/C#/SaveWise/Persistence/Persistence.csproj",
   "expectedPackageFiles": [
+    "/Users/jecadriano/.nuget/packages/microsoft.aspnetcore.cryptography.internal/7.0.2/microsoft.aspnetcore.cryptography.internal.7.0.2.nupkg.sha512",
+    "/Users/jecadriano/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/7.0.2/microsoft.aspnetcore.cryptography.keyderivation.7.0.2.nupkg.sha512",
+    "/Users/jecadriano/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/7.0.2/microsoft.aspnetcore.identity.entityframeworkcore.7.0.2.nupkg.sha512",
     "/Users/jecadriano/.nuget/packages/microsoft.data.sqlite.core/7.0.2/microsoft.data.sqlite.core.7.0.2.nupkg.sha512",
     "/Users/jecadriano/.nuget/packages/microsoft.entityframeworkcore/7.0.2/microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
     "/Users/jecadriano/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.2/microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",
@@ -17,6 +20,8 @@
     "/Users/jecadriano/.nuget/packages/microsoft.extensions.dependencyinjection/7.0.0/microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "/Users/jecadriano/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "/Users/jecadriano/.nuget/packages/microsoft.extensions.dependencymodel/7.0.0/microsoft.extensions.dependencymodel.7.0.0.nupkg.sha512",
+    "/Users/jecadriano/.nuget/packages/microsoft.extensions.identity.core/7.0.2/microsoft.extensions.identity.core.7.0.2.nupkg.sha512",
+    "/Users/jecadriano/.nuget/packages/microsoft.extensions.identity.stores/7.0.2/microsoft.extensions.identity.stores.7.0.2.nupkg.sha512",
     "/Users/jecadriano/.nuget/packages/microsoft.extensions.logging/7.0.0/microsoft.extensions.logging.7.0.0.nupkg.sha512",
     "/Users/jecadriano/.nuget/packages/microsoft.extensions.logging.abstractions/7.0.0/microsoft.extensions.logging.abstractions.7.0.0.nupkg.sha512",
     "/Users/jecadriano/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",

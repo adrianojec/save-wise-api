@@ -3,6 +3,7 @@ using API.Controllers.Accounts.ViewModels;
 using API.Controllers.InputModels;
 using Application.Commands.Accounts.Interfaces;
 using Application.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Accounts

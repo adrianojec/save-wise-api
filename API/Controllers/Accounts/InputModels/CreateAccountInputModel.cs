@@ -6,10 +6,11 @@ namespace API.Controllers.InputModels
     {
         public string Title { get; set; } = string.Empty;
 
-        public CreateAccountDto ToCreateAccountDto()
+        public CreateAccountDto ToCreateAccountDto(string userId)
         {
             var account = new CreateAccountDto
             {
+                UserId = userId,
                 Title = Title,
             };
 

@@ -13,9 +13,11 @@ namespace Application.Commands.Accounts
             _accountRepository = accountRepository;
         }
 
-        public async Task<Result<AccountDto>> ExecuteCommand(Guid id)
+        public async Task<Result<AccountDto>> ExecuteCommand(string userId, Guid id)
         {
             var account = await _accountRepository.GetById(id);
+
+            if (userId != account.UserId) return Result<AccountDto>.Failure("Not existing account for this user");
 
             if (account == null) return Result<AccountDto>.Failure("Account not found.");
 

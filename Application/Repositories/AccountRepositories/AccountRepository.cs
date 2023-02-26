@@ -19,12 +19,17 @@ namespace Application.Repositories.AccountRepositories
 
         public async Task<List<Account>> GetAll()
         {
-            return await _context.Accounts.Include(account => account.Transactions).Where(account => !account.isArchived).ToListAsync();
+            return await _context.Accounts
+                .Include(account => account.Transactions)
+                .Where(account => !account.isArchived).ToListAsync();
         }
 
         public async Task<Account> GetById(Guid id)
         {
-            var account = await _context.Accounts.Include(account => account.Transactions).FirstOrDefaultAsync(account => account.Id == id && !account.isArchived);
+            var account = await _context.Accounts
+                .Include(account => account.Transactions)
+                .FirstOrDefaultAsync(account => account.Id == id && !account.isArchived);
+
             return account;
         }
 

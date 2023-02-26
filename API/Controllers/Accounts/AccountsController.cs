@@ -2,8 +2,6 @@ using API.Controllers.Accounts.InputModels;
 using API.Controllers.Accounts.ViewModels;
 using API.Controllers.InputModels;
 using Application.Commands.Accounts.Interfaces;
-using Application.Core;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Accounts
@@ -11,7 +9,7 @@ namespace API.Controllers.Accounts
     [ApiController]
     [Route("api/[controller]")]
 
-    public class AccountsController : ControllerBase
+    public class AccountsController : BaseController
     {
         private readonly ICreateAccountCommand _createAccountCommand;
         private readonly IGetAccountsCommand _getAccountsCommand;
@@ -37,7 +35,7 @@ namespace API.Controllers.Accounts
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateAccountInputModel input)
         {
-            var result = await _createAccountCommand.ExecuteCommand(input.ToCreateAccountDto());
+            var result = await _createAccountCommand.ExecuteCommand(input.ToCreateAccountDto(GetCurrentUserId()));
             if (!result.isSuccess) return BadRequest(result.Error);
             return Ok();
         }
@@ -45,11 +43,17 @@ namespace API.Controllers.Accounts
         [HttpGet]
         public async Task<ActionResult<List<AccountViewModel>>> GetAll()
         {
+
             var accounts = await _getAccountsCommand.ExecuteCommand();
 
-            if (!accounts.isSuccess) return BadRequest("Error getting accounts");
+            if (!accounts.isSuccess) return BadRequest(accounts.Error);
 
-            var data = accounts.Value.Select(account => new AccountViewModel(account)).ToList();
+            var userId = GetCurrentUserId();
+
+            var data = accounts.Value
+                .Where(account => account.UserId == userId)
+                .Select(account => new AccountViewModel(account))
+                .ToList();
 
             return Ok(data);
         }
@@ -57,7 +61,9 @@ namespace API.Controllers.Accounts
         [HttpGet("{id}")]
         public async Task<ActionResult<AccountViewModel>> GetById([FromRoute] Guid id)
         {
-            var account = await _getAccountCommand.ExecuteCommand(id);
+            var userId = GetCurrentUserId();
+
+            var account = await _getAccountCommand.ExecuteCommand(userId, id);
 
             if (!account.isSuccess) return BadRequest(account.Error);
 

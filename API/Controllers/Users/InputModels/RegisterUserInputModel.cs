@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Domain;
 
 namespace API.Controllers.Users.InputModels
 {
@@ -15,5 +16,18 @@ namespace API.Controllers.Users.InputModels
         [Required]
         [RegularExpression("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$", ErrorMessage = "Password must be complex")]
         public string Password { get; set; } = string.Empty;
+
+        public User ToUserEntity()
+        {
+            var user = new User
+            {
+                FirstName = FirstName,
+                LastName = LastName,
+                UserName = UserName,
+                Email = Email
+            };
+
+            return user;
+        }
     }
 }

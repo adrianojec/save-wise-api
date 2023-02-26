@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using API.Controllers.Users.InputModels;
 using API.Controllers.Users.ViewModels;
 using API.Services;
@@ -9,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers.Users
 {
-    [AllowAnonymous]
     [ApiController]
     [Route("api/[controller]")]
 
@@ -23,6 +23,7 @@ namespace API.Controllers.Users
             _userManager = userManager;
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ActionResult<UserViewModel>> Login([FromBody] LoginUserInputModel input)
         {
@@ -34,18 +35,13 @@ namespace API.Controllers.Users
 
             if (!result) return Unauthorized();
 
-            if (result)
-            {
-                return new UserViewModel
-                {
-                    UserName = user.UserName ?? string.Empty,
-                    Token = _tokenService.CreateToken(user),
-                };
-            }
+            var token = _tokenService.CreateToken(user);
 
-            return Unauthorized();
+            return new UserViewModel(user.UserName, token);
+
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<ActionResult<UserViewModel>> Register(RegisterUserInputModel input)
         {
@@ -59,26 +55,27 @@ namespace API.Controllers.Users
                 return BadRequest("Email is already taken");
             }
 
-            var user = new User
-            {
-                FirstName = input.FirstName,
-                LastName = input.LastName,
-                UserName = input.UserName,
-                Email = input.Email,
-            };
+            var user = input.ToUserEntity();
 
             var result = await _userManager.CreateAsync(user, input.Password);
 
-            if (result.Succeeded)
-            {
-                return new UserViewModel
-                {
-                    UserName = user.UserName,
-                    Token = _tokenService.CreateToken(user)
-                };
-            }
+            if (!result.Succeeded) return BadRequest(result.Errors);
 
-            return BadRequest(result.Errors);
+            var token = _tokenService.CreateToken(user);
+
+            return new UserViewModel(user.UserName, token);
+
+
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<UserViewModel>> GetCurrentUser()
+        {
+            var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+
+            var token = _tokenService.CreateToken(user);
+
+            return new UserViewModel(user.UserName, token);
         }
     }
 }

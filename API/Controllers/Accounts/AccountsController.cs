@@ -2,6 +2,7 @@ using API.Controllers.Accounts.InputModels;
 using API.Controllers.Accounts.ViewModels;
 using API.Controllers.InputModels;
 using Application.Commands.Accounts.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.Accounts
@@ -40,6 +41,7 @@ namespace API.Controllers.Accounts
             return Ok();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<List<AccountViewModel>>> GetAll()
         {
@@ -48,10 +50,10 @@ namespace API.Controllers.Accounts
 
             if (!accounts.isSuccess) return BadRequest(accounts.Error);
 
-            var userId = GetCurrentUserId();
+            // var userId = GetCurrentUserId();
 
             var data = accounts.Value
-                .Where(account => account.UserId == userId)
+                // .Where(account => account.UserId == userId)
                 .Select(account => new AccountViewModel(account))
                 .ToList();
 

@@ -5,25 +5,25 @@ using Application.Repositories.AccountRepositories;
 
 namespace Application.Commands.Accounts
 {
-    public class GetAccountCommand : IGetAccountCommand
-    {
-        private readonly IAccountRepository _accountRepository;
-        public GetAccountCommand(IAccountRepository accountRepository)
-        {
-            _accountRepository = accountRepository;
-        }
+   public class GetAccountCommand : IGetAccountCommand
+   {
+      private readonly IAccountRepository _accountRepository;
+      public GetAccountCommand(IAccountRepository accountRepository)
+      {
+         _accountRepository = accountRepository;
+      }
 
-        public async Task<Result<AccountDto>> ExecuteCommand(string userId, Guid id)
-        {
-            var account = await _accountRepository.GetById(id);
+      public async Task<Result<AccountDto>> ExecuteCommand(string userId, Guid id)
+      {
+         var account = await _accountRepository.GetById(id);
 
-            if (userId != account.UserId) return Result<AccountDto>.Failure("Not existing account for this user");
+         if (userId != account.UserId) return Result<AccountDto>.Failure("No existing account for this user");
 
-            if (account == null) return Result<AccountDto>.Failure("Account not found.");
+         if (account == null) return Result<AccountDto>.Failure("Account not found.");
 
-            var data = new AccountDto(account);
+         var data = new AccountDto(account);
 
-            return Result<AccountDto>.Success(data);
-        }
-    }
+         return Result<AccountDto>.Success(data);
+      }
+   }
 }
